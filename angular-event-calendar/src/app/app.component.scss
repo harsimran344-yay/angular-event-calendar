@@ -1,0 +1,233 @@
+$event-cal-blue: #0000FF;
+$event-cal-red: #eb364f;
+$event-cal-white: #fff;
+$event-cal-black: #000;
+$event-cal-light-grey: #dedcdd;
+$event-cal-dark-grey: #636363;
+
+.container {
+  font-family: Andale Mono, monospace;
+  color: #5e5e5e;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-shadow: 0 10px 20px -10px $event-cal-dark-grey;
+  -moz-box-shadow: 0 10px 20px -10px $event-cal-dark-grey;
+  box-shadow: 0 10px 20px -10px $event-cal-dark-grey;
+  border-radius: 15px;
+  width: 80%;
+  min-width: 50rem;
+  margin: 0 auto;
+}
+
+.eventInfo {
+  width: 50%;
+  min-width: 10rem;
+  padding: 1rem 1.5rem;
+  background-color: $event-cal-blue;
+  color: $event-cal-white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &__day {
+    text-align: center;
+
+    &--number {
+      font-weight: 800;
+      font-size: 9rem;
+      line-height: 9rem;
+      margin: 20px 0 0 0;
+    }
+
+    &--name {
+      font-size: 2rem;
+    }
+  }
+
+  &__eventList {
+    text-align: start;
+    min-height: 5rem;
+    list-style-position: inside;
+    margin: 40px 0 20px 0;
+
+    &--headline {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    &--list {
+      padding: 0;
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    &--noEventsMessage {
+      margin: 12px 5px;
+      font-size: 0.7rem;
+      font-style: italic;
+    }
+  }
+}
+
+.calendar {
+  background-color: $event-cal-white;
+  width: 50%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  display: grid;
+  flex-direction: column;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__year {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: $event-cal-light-grey;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    &--number {
+      margin: 10px;
+    }
+
+    &--button {
+      cursor: pointer;
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+
+      &--left {
+        border-left: 7px solid $event-cal-light-grey;
+      }
+
+      &--right {
+        border-right: 7px solid $event-cal-light-grey;
+      }
+    }
+  }
+
+  &__monthList {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    color: #9d9d9d;
+    font-size: 0.7rem;
+    border-bottom: 1px solid $event-cal-light-grey;
+
+    &--month {
+      cursor: pointer;
+    }
+
+    &--active {
+      color: $event-cal-black;
+      font-weight: bold;
+    }
+  }
+
+  &__day {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    color: $event-cal-dark-grey;
+
+    &--name {
+      font-size: 1rem;
+      font-weight: bolder;
+    }
+
+    &--number {
+      font-size: 0.9rem;
+
+    }
+
+    &--nextMonth {
+      color: #c0c0c0;
+    }
+
+    &--item {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+    }
+
+    &--active {
+      background-color: $event-cal-blue;
+      color: $event-cal-white;
+      font-weight: bold;
+    }
+
+    &--nextMonth {
+      color: $event-cal-light-grey;
+    }
+
+    &--empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+    }
+  }
+
+  &__eventCheck {
+    background-color: $event-cal-red;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    position: relative;
+    top: -8px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .eventInfo {
+    align-items: center;
+    width: 40%;
+    &__eventList {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .eventInfo {
+    align-items: center;
+    width: auto;
+    &__eventList {
+      text-align: center;
+    }
+  }
+}
+@media only screen and (min-width: 600px) {
+  .calendar {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .calendar {
+    width: 40%;
+  }
+}
