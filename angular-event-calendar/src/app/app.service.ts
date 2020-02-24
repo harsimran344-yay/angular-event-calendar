@@ -14,7 +14,7 @@ export class CalendarAppService {
     return this.httpClient.post('https://timelyapp.time.ly/api/calendars/info', {url: 'https://calendar.time.ly/ficceyp4'}, {});
   }
 
-  public getEventCalendar(calendarId): Observable<any> {
+  public getEventCalendarEvents(calendarId): Observable<any> {
     const url = `https://timelyapp.time.ly/api/calendars/${calendarId}/events`;
     return this.httpClient.get(url, {});
   }
