@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="eventInfo">
+    <div class="eventInfo__day eventInfo__day--number">{{selectedDay}}</div>
+    <div class="eventInfo__day eventInfo__day--name">{{selectedDayName}}</div>
+
+    <div class="eventInfo__eventList" *ngIf="activeDayObject">
+      <div class="eventInfo__eventList--headline">
+        Events
+      </div>
+
+      <ul type="disc"
+          class="eventInfo__eventList--list"
+          *ngIf="activeDayObject.events.id">
+          <li>Event Title: {{activeDayObject.events.title}}</li>
+          <li>Start Date: {{activeDayObject.events.start_datetime}}</li>
+          <li>Event Description: {{activeDayObject.events.description_short}}</li>
+          <img *ngIf="activeDayObject.events.images" src="{{activeDayObject.events.images[0].sizes.thumbnail.url}}" width="50px" height="50px">
+      </ul>
+      <div *ngIf="activeDayObject.events.length === 0" class="eventInfo__eventList--noEventsMessage">- no events scheduled for this date -
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar">
+    <div class="calendar__year">
+      <div class="calendar__year--button calendar__year--button--right" (click)="previousYear()">
+      </div>
+      <div class="calendar__year--number">{{selectedYear}}</div>
+      <div class="calendar__year--button calendar__year--button--left" (click)="nextYear()">
+      </div>
+    </div>
+    <div class="calendar__monthList">
+      <div *ngFor="let month of months, let i = index">
+        <span class="calendar__monthList--month" (click)="monthSelection(i)"
+              [ngClass]="{'calendar__monthList--active': months[i] === selectedMonthName}">{{month}}</span>
+      </div>
+    </div>
+
+    <div class="calendar__day">
+      <div *ngFor="let dayName of dayNames" class="calendar__day--name">
+        <span>{{dayName | slice : 0 : 3 }}</span>
+      </div>
+    </div>
+    <div class="calendar__container">
+      <div class="calendar__day calendar__day--number" *ngFor="let week of weeks, let weekIndex = index">
+        <div class="calendar__day--number" *ngFor="let day of week.days, let dayIndex = index">
+          <span *ngIf="day"
+                (click)="daySelection(dayIndex, weekIndex)"
+                class="calendar__day--item"
+                [ngClass]="{
+                'calendar__day--active': this.weekIndex === selectedWeekIndex && dayIndex === selectedDayIndex,
+                'calendar__day--nextMonth': day && day.isNextMonthsDay
+                }">
+            {{day && day.number < 9 ? '0' : ''}}{{day ? day.number : ''}}
+            <span *ngIf="day && day.events.id" class="calendar__eventCheck"></span>
+          </span>
+          <span *ngIf="!day || !day.number"
+                class="calendar__day--empty">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
